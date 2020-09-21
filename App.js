@@ -1,21 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, NativeModules } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Header from './src/components/Header/Header';
+
+export default class App extends React.Component {
+  renderList() {
+    const nomes = [
+      'Eddie Van Halen',
+      'Jimi Hendrix',
+      'Chimbinha',
+      'Steve Vai'
+    ];
+
+    const textElements = nomes.map((name) => {
+      return <Text key={name}>{name}</Text>
+    });
+
+    return textElements;
+  }
+  
+  render() {
+    return (
+      <View>
+        <Header title={'Pessoas'} />
+        { this.renderList() }
+      </View>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
